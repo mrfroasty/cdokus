@@ -36,7 +36,7 @@
 <config>
     <modules>
         <Zanbytes_Cdokus>
-            <version>0.0.0.5</version>
+            <version>0.0.0.6</version>
         </Zanbytes_Cdokus>
     </modules>
     <frontend>
