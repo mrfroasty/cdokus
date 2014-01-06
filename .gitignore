@@ -1246,3 +1246,8 @@ skin/frontend/enterprise
 skin/install/
 var/
 /media/
+app/design/adminhtml/default/default/template/payment/
+app/design/adminhtml/default/default/template/system/
+app/design/frontend/base/default/template/bundle/
+app/design/frontend/base/default/template/page/
+app/locale/en_US/Mage_AmazonPayments.csv
