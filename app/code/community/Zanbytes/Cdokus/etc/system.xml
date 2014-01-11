@@ -104,7 +104,7 @@
                             <comment><![CDATA[If file exist it will be renamed to foo_1.pdf]]>
                             </comment>
                         </allow_file_rename>
-                        <license>
+<!--                        <license>
                             <label>License key</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>20</sort_order>
@@ -113,7 +113,7 @@
                             <show_in_store>1</show_in_store>
                             <comment><![CDATA[If you dont have one, please consult me info@zanbytes.com]]>
                             </comment>
-                        </license>                                                                                                                 
+                        </license>                                                                                                                 -->
                     </fields>
                 </general>
             </groups>
