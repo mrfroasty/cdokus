@@ -44,20 +44,12 @@ class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Grid extends Mage_Adminhtml_Block_W
     }
 
     /**
-     * Retrieve collection class
-     *
-     * @return string
-     */
-    protected function _getCollectionClass() {
-        return 'sales/quote_collection';
-    }
-
-    /**
      * Prepare collection
      *
      * @return Mage_Adminhtml_Block_Widget_Grid
      */
     protected function _prepareCollection() {
+        /** @var $collection Zanbytes_Cdokus_Model_Resource_Link_Collection */
         $collection = Mage::getResourceModel('cdokus/link_collection');
         $this->setCollection($collection);
         return parent::_prepareCollection();
