@@ -26,15 +26,17 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Grid.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Grid.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Grid extends Mage_Adminhtml_Block_Widget_Grid {
+class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Grid extends Mage_Adminhtml_Block_Widget_Grid
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->setId('cdokus_links_grid');
         $this->setUseAjax(true);
@@ -48,7 +50,8 @@ class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Grid extends Mage_Adminhtml_Block_W
      *
      * @return Mage_Adminhtml_Block_Widget_Grid
      */
-    protected function _prepareCollection() {
+    protected function _prepareCollection()
+    {
         /** @var $collection Zanbytes_Cdokus_Model_Resource_Link_Collection */
         $collection = Mage::getResourceModel('cdokus/link_collection');
         $this->setCollection($collection);
@@ -60,7 +63,8 @@ class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Grid extends Mage_Adminhtml_Block_W
      *
      * @return Mage_Adminhtml_Block_Widget_Grid
      */
-    protected function _prepareColumns() {
+    protected function _prepareColumns()
+    {
         $this->addColumn('entity_id', array(
             'header' => Mage::helper('cdokus')->__('ID'),
             'sortable' => true,
@@ -119,11 +123,11 @@ class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Grid extends Mage_Adminhtml_Block_W
         ));
 
 
-
         return parent::_prepareColumns();
     }
 
-    protected function _prepareMassaction() {
+    protected function _prepareMassaction()
+    {
         $this->setMassactionIdField('entity_id');
         $this->getMassactionBlock()->setFormFieldName('cdokus');
 
@@ -152,11 +156,13 @@ class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Grid extends Mage_Adminhtml_Block_W
         return $this;
     }
 
-    public function getRowUrl($row) {
+    public function getRowUrl($row)
+    {
         return $this->getUrl('*/*/edit', array('link_id' => $row->getEntityId()));
     }
 
-    public function getGridUrl() {
+    public function getGridUrl()
+    {
         return $this->getUrl('*/*/grid', array('_current' => true));
     }
 

@@ -55,7 +55,7 @@
                     <file>cdokus.xml</file>
                 </cdokus>
             </updates>
-        </layout>  
+        </layout>
         <translate>
             <modules>
                 <Zanbytes_Cdokus>
@@ -64,9 +64,9 @@
                     </files>
                 </Zanbytes_Cdokus>
             </modules>
-        </translate>              
-    </frontend> 
-    <global>  
+        </translate>
+    </frontend>
+    <global>
         <models>
             <cdokus>
                 <class>Zanbytes_Cdokus_Model</class>
@@ -80,7 +80,7 @@
                     </links>
                 </entities>
             </cdokus_resource>
-        </models>           
+        </models>
         <resources>
             <cdokus_setup>
                 <setup>
@@ -101,7 +101,7 @@
                     <use>core_read</use>
                 </connection>
             </cdokus_read>
-        </resources> 
+        </resources>
         <helpers>
             <cdokus>
                 <class>Zanbytes_Cdokus_Helper</class>
@@ -123,38 +123,38 @@
                     </modules>
                 </args>
             </adminhtml>
-        </routers>       
+        </routers>
     </admin>
     <adminhtml>
-<!--        
-        <events>
-            <admin_system_config_changed_section_cdokus>
-                <observers>
+        <!--
+                <events>
                     <admin_system_config_changed_section_cdokus>
-                        <type>model</type>
-                        <class>cdokus/link</class>
-                        <method>execute</method>
+                        <observers>
+                            <admin_system_config_changed_section_cdokus>
+                                <type>model</type>
+                                <class>cdokus/link</class>
+                                <method>execute</method>
+                            </admin_system_config_changed_section_cdokus>
+                        </observers>
                     </admin_system_config_changed_section_cdokus>
-                </observers>
-            </admin_system_config_changed_section_cdokus>       
-            <catalog_product_cdokus_upload_document_after>
-                <observers>
-                    <catalog_product_cdokus_upload_document_after_cdokus>
-                        <type>model</type>
-                        <class>cdokus/link</class>
-                        <method>execute</method>
-                    </catalog_product_cdokus_upload_document_after_cdokus>
-                </observers>
-            </catalog_product_cdokus_upload_document_after>       
-        </events>         
--->
+                    <catalog_product_cdokus_upload_document_after>
+                        <observers>
+                            <catalog_product_cdokus_upload_document_after_cdokus>
+                                <type>model</type>
+                                <class>cdokus/link</class>
+                                <method>execute</method>
+                            </catalog_product_cdokus_upload_document_after_cdokus>
+                        </observers>
+                    </catalog_product_cdokus_upload_document_after>
+                </events>
+        -->
         <layout>
             <updates>
                 <cdokus>
                     <file>cdokus.xml</file>
                 </cdokus>
             </updates>
-        </layout>      
+        </layout>
         <translate>
             <modules>
                 <Zanbytes_Cdokus>
@@ -163,7 +163,7 @@
                     </files>
                 </Zanbytes_Cdokus>
             </modules>
-        </translate>        
+        </translate>
         <acl>
             <resources>
                 <admin>
@@ -182,7 +182,7 @@
                     </children>
                 </admin>
             </resources>
-        </acl>          
+        </acl>
     </adminhtml>
     <default>
         <cdokus>
@@ -193,5 +193,5 @@
                 <allow_file_rename>1</allow_file_rename>
             </general>
         </cdokus>
-    </default>    
+    </default>
 </config>

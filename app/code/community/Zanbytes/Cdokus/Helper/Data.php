@@ -26,20 +26,22 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Data.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Data.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Helper_Data extends Mage_Core_Helper_Abstract {
+class Zanbytes_Cdokus_Helper_Data extends Mage_Core_Helper_Abstract
+{
 
     /**
      * false if guest not allowed && user not logged in, otherwise true
      * @return boolean
      */
-    public function isAllowed() {
-        $allowed = (bool) Mage::getSingleton('cdokus/link')->getConfigData('allow_guest');
+    public function isAllowed()
+    {
+        $allowed = (bool)Mage::getSingleton('cdokus/link')->getConfigData('allow_guest');
         $isLoggedIn = Mage::getSingleton('customer/session')->isLoggedIn();
         if (false === $allowed && false === $isLoggedIn)
             return false;

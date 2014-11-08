@@ -26,13 +26,14 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Grid.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Grid.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Grid extends Mage_Adminhtml_Block_Widget_Grid {
+class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Grid extends Mage_Adminhtml_Block_Widget_Grid
+{
 
     /**
      * Pager visibility
@@ -52,7 +53,8 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Grid extend
      * Set grid params
      *
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->setId('cdokus_links_product_grid');
         $this->setDefaultSort('entity_id');
@@ -64,7 +66,8 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Grid extend
      *
      * @return Mage_Catalog_Model_Product
      */
-    protected function _getProduct() {
+    protected function _getProduct()
+    {
         return Mage::registry('current_product');
     }
 
@@ -73,9 +76,10 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Grid extend
      *
      * @return Mage_Adminhtml_Block_Widget_Grid
      */
-    protected function _prepareCollection() {
+    protected function _prepareCollection()
+    {
         $collection = Mage::getResourceModel('cdokus/link_collection')
-                ->addFieldToFilter('sku', $this->_getProduct()->getSku());
+            ->addFieldToFilter('sku', $this->_getProduct()->getSku());
         if ($storeId = Mage::app()->getRequest()->getParam('store', false)) {
             $collection->addFieldToFilter('store_id', $storeId);
         } else {
@@ -90,7 +94,8 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Grid extend
      *
      * @return boolean
      */
-    public function isReadonly() {
+    public function isReadonly()
+    {
         return $this->_getProduct()->getRelatedReadonly();
     }
 
@@ -99,7 +104,8 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Grid extend
      *
      * @return Mage_Adminhtml_Block_Widget_Grid
      */
-    protected function _prepareColumns() {
+    protected function _prepareColumns()
+    {
 
         $this->addColumn('in_products', array(
             'header_css_class' => 'a-center',
@@ -227,7 +233,8 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Grid extend
      *
      * @return string
      */
-    public function getGridUrl() {
+    public function getGridUrl()
+    {
         return $this->getUrl('*/cdokus_product_edit/tabgrid', array('_current' => true));
     }
 
@@ -237,7 +244,8 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Grid extend
      * @param Mage_Catalog_Model_Product|Varien_Object
      * @return string
      */
-    public function getRowUrl($link) {
+    public function getRowUrl($link)
+    {
         return $this->getUrl('*/cdokus_document_link/edit', array('link_id' => $link->getId(), '_current' => true));
     }
 
@@ -246,9 +254,10 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Grid extend
      *
      * @return array
      */
-    public function getSelectedProducts() {
+    public function getSelectedProducts()
+    {
         $collection = Mage::getResourceModel('cdokus/link_collection')
-                ->addFieldToFilter('sku', $this->_getProduct()->getSku());
+            ->addFieldToFilter('sku', $this->_getProduct()->getSku());
         $products = array();
         foreach ($collection as $link) {
             $products[$link->getId()] = array('position' => $link->getPosition());

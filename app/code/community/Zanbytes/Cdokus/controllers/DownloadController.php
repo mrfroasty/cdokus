@@ -26,24 +26,27 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: DownloadController.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: DownloadController.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_DownloadController extends Mage_Core_Controller_Front_Action {
+class Zanbytes_Cdokus_DownloadController extends Mage_Core_Controller_Front_Action
+{
 
     /**
      * Retrieve customer session object
      *
      * @return Mage_Customer_Model_Session
      */
-    protected function _getSession() {
+    protected function _getSession()
+    {
         return Mage::getSingleton('customer/session');
     }
 
-    public function preDispatch() {
+    public function preDispatch()
+    {
         if (Mage::helper('cdokus')->isAllowed())
             return $this;
         parent::preDispatch();
@@ -52,7 +55,8 @@ class Zanbytes_Cdokus_DownloadController extends Mage_Core_Controller_Front_Acti
         }
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         if ($linkId = $this->getRequest()->getParam('link_id', false)) {
             if ($link = Mage::getSingleton('cdokus/link')->load($linkId)) {
                 $this->_prepareDownloadResponse(basename($link->getFilename()), array('type' => 'filename', 'value' => $link->getFilename(), 'rm' => false));
@@ -69,11 +73,12 @@ class Zanbytes_Cdokus_DownloadController extends Mage_Core_Controller_Front_Acti
      * @param string|array $content set to null to avoid starting output, $contentLength should be set explicitly in
      *                              that case
      * @param string $contentType
-     * @param int $contentLength    explicit content length, if strlen($content) isn't applicable
+     * @param int $contentLength explicit content length, if strlen($content) isn't applicable
      * @return Mage_Adminhtml_Controller_Action
      */
     protected function _prepareDownloadResponse($fileName, $content, $contentType = 'application/octet-stream', $contentLength = null
-    ) {
+    )
+    {
         $session = Mage::getSingleton('admin/session');
         if ($session->isFirstPageAfterLogin()) {
             $this->_redirect($session->getUser()->getStartupPageUrl());
@@ -94,13 +99,13 @@ class Zanbytes_Cdokus_DownloadController extends Mage_Core_Controller_Front_Acti
         }
 
         $this->getResponse()
-                ->setHttpResponseCode(200)
-                ->setHeader('Pragma', 'public', true)
-                ->setHeader('Cache-Control', 'must-revalidate, post-check=0, pre-check=0', true)
-                ->setHeader('Content-type', $contentType, true)
-                ->setHeader('Content-Length', is_null($contentLength) ? strlen($content) : $contentLength)
-                ->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"')
-                ->setHeader('Last-Modified', date('r'));
+            ->setHttpResponseCode(200)
+            ->setHeader('Pragma', 'public', true)
+            ->setHeader('Cache-Control', 'must-revalidate, post-check=0, pre-check=0', true)
+            ->setHeader('Content-type', $contentType, true)
+            ->setHeader('Content-Length', is_null($contentLength) ? strlen($content) : $contentLength)
+            ->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"')
+            ->setHeader('Last-Modified', date('r'));
 
         if (!is_null($content)) {
             if ($isFile) {

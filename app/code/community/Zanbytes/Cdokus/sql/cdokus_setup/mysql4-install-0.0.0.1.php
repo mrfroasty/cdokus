@@ -25,11 +25,11 @@
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: mysql4-install-0.0.0.1.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: mysql4-install-0.0.0.1.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 $installer = $this;
 
@@ -41,47 +41,47 @@ $installer->startSetup();
  */
 if (version_compare(Mage::getVersion(), '1.5.1.0', '>') === true) {
     $table = $installer->getConnection()
-            ->newTable($installer->getTable('cdokus/links'))
-            ->addColumn('entity_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
-                'identity' => true,
-                'nullable' => false,
-                'primary' => true,
-                    ), 'Entity ID')
-            ->addColumn('sku', Varien_Db_Ddl_Table::TYPE_CHAR, 55, array(
-                'nullable' => false,
-                    ), 'Sku')
-            ->addColumn('filename', Varien_Db_Ddl_Table::TYPE_VARCHAR, 155, array(
-                'nullable' => false,
-                    ), 'File Name')
-            ->addColumn('label', Varien_Db_Ddl_Table::TYPE_TEXT, null, array(
-                'nullable' => false,
-                    ), 'Label')
-            ->addColumn('store_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
-                'nullable' => false,
-                'default' => 0,
-                    ), 'Store Id')
-            ->addColumn('position', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
-                'nullable' => false,
-                'default' => 0,
-                    ), 'Position')
-            ->addColumn('is_active', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
-                'nullable' => false,
-                'default' => 1,
-                    ), 'Is Active')
-            ->addColumn('created_at', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(
-                'nullable' => false,
-                    ), 'Created At')
-            ->addColumn('updated_at', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(
-                'nullable' => false,
-                    ), 'Updated At')
-            ->addIndex($installer->getIdxName('cdokus/links', array('filename')), array('filename'))
-            ->addIndex(
-                    $installer->getIdxName(
-                            array('cdokus/links', 'decimal'), array('filename', 'store_id'), Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE
-                    ), array('filename', 'store_id'), array('type' => Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE))
-            ->addForeignKey($installer->getFkName('cdokus/links', 'sku', 'catalog/product', 'sku'), 'sku', $installer->getTable('catalog/product'), 'sku', Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE)
-            ->addForeignKey($installer->getFkName('cdokus/links', 'store_id', 'core/store', 'store_id'), 'store_id', $installer->getTable('core/store'), 'store_id', Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE)
-            ->setComment('Cdokus Links');
+        ->newTable($installer->getTable('cdokus/links'))
+        ->addColumn('entity_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+            'identity' => true,
+            'nullable' => false,
+            'primary' => true,
+        ), 'Entity ID')
+        ->addColumn('sku', Varien_Db_Ddl_Table::TYPE_CHAR, 55, array(
+            'nullable' => false,
+        ), 'Sku')
+        ->addColumn('filename', Varien_Db_Ddl_Table::TYPE_VARCHAR, 155, array(
+            'nullable' => false,
+        ), 'File Name')
+        ->addColumn('label', Varien_Db_Ddl_Table::TYPE_TEXT, null, array(
+            'nullable' => false,
+        ), 'Label')
+        ->addColumn('store_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+            'nullable' => false,
+            'default' => 0,
+        ), 'Store Id')
+        ->addColumn('position', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+            'nullable' => false,
+            'default' => 0,
+        ), 'Position')
+        ->addColumn('is_active', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+            'nullable' => false,
+            'default' => 1,
+        ), 'Is Active')
+        ->addColumn('created_at', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(
+            'nullable' => false,
+        ), 'Created At')
+        ->addColumn('updated_at', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(
+            'nullable' => false,
+        ), 'Updated At')
+        ->addIndex($installer->getIdxName('cdokus/links', array('filename')), array('filename'))
+        ->addIndex(
+            $installer->getIdxName(
+                array('cdokus/links', 'decimal'), array('filename', 'store_id'), Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE
+            ), array('filename', 'store_id'), array('type' => Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE))
+        ->addForeignKey($installer->getFkName('cdokus/links', 'sku', 'catalog/product', 'sku'), 'sku', $installer->getTable('catalog/product'), 'sku', Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE)
+        ->addForeignKey($installer->getFkName('cdokus/links', 'store_id', 'core/store', 'store_id'), 'store_id', $installer->getTable('core/store'), 'store_id', Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE)
+        ->setComment('Cdokus Links');
     $installer->getConnection()->dropTable($installer->getTable('cdokus/links'));
     $installer->getConnection()->createTable($table);
 } else {

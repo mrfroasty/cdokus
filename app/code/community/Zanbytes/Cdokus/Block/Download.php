@@ -26,17 +26,19 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Download.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Download.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Block_Download extends Mage_Core_Block_Template {
+class Zanbytes_Cdokus_Block_Download extends Mage_Core_Block_Template
+{
 
     protected $_collection;
 
-    protected function _beforeToHtml() {
+    protected function _beforeToHtml()
+    {
         if (!$this->getProductSku()) {
             return false;
         }
@@ -45,11 +47,12 @@ class Zanbytes_Cdokus_Block_Download extends Mage_Core_Block_Template {
 
     /**
      * The final moment of truth i.e html
-     * @desc Assumptions the last entry will be set at default store 
+     * @desc Assumptions the last entry will be set at default store
      * @see Mage_Catalog_Model_Resource_Product_Link_Product_Collection::setStoreOrder
      * @return string
      */
-    public function getAllLinks() {
+    public function getAllLinks()
+    {
         $links = array();
         $collection = $this->_getCollection();
         if ($collection->count() <= 0)
@@ -72,24 +75,27 @@ class Zanbytes_Cdokus_Block_Download extends Mage_Core_Block_Template {
      * @param Zanbytes_Cdokus_Model_Link $link
      * @return type
      */
-    public function getDownloadUrl(Zanbytes_Cdokus_Model_Link $link) {
+    public function getDownloadUrl(Zanbytes_Cdokus_Model_Link $link)
+    {
         return $this->getUrl('cdokus/download/index', array('link_id' => $link->getId()));
     }
 
-    protected function _getCollection() {
+    protected function _getCollection()
+    {
         if (!$this->_collection && $this->getProductSku()) {
             $model = Mage::getModel('cdokus/link');
             $this->_collection = $model->getResourceCollection()
-                    ->addSkuToSelect($this->getProductSku())
-                    ->addProductFilter()
-                    ->addStoreFilter(Mage::app()->getStore()->getId())
-                    ->addActiveFilter(Zanbytes_Cdokus_Model_Link::STATUS_ENABLED)
-                    ->setPositionOrder();
+                ->addSkuToSelect($this->getProductSku())
+                ->addProductFilter()
+                ->addStoreFilter(Mage::app()->getStore()->getId())
+                ->addActiveFilter(Zanbytes_Cdokus_Model_Link::STATUS_ENABLED)
+                ->setPositionOrder();
         }
         return $this->_collection;
     }
 
-    public function getProductSku() {
+    public function getProductSku()
+    {
         if ($product = Mage::registry('current_product')) {
             return $product->getSku();
         }

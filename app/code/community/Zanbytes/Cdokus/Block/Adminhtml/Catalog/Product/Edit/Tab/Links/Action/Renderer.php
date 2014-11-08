@@ -26,27 +26,29 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Renderer.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Renderer.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Action_Renderer extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract {
+class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Action_Renderer extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract
+{
 
     /**
      * Render delete action link
      * @param Varien_Object $row
      * @return type
      */
-    public function render(Varien_Object $row) {
+    public function render(Varien_Object $row)
+    {
         $label = $this->__('You are attempting link delete, you sure ?');
         $out = $this->getLayout()->createBlock('adminhtml/widget_button')
-                ->setData(array(
-            'label' => $this->__('Delete'),
-            'class' => 'delete icon-btn',
-            'on_click' => "if (confirm('$label')) { setLocation('" . $this->getDeleteUrl($row->getId()) . "');}"
-                ));
+            ->setData(array(
+                'label' => $this->__('Delete'),
+                'class' => 'delete icon-btn',
+                'on_click' => "if (confirm('$label')) { setLocation('" . $this->getDeleteUrl($row->getId()) . "');}"
+            ));
         return $out->toHtml();
     }
 
@@ -55,13 +57,14 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Links_Action_Rend
      * @param type $id
      * @return type
      */
-    public function getDeleteUrl($id) {
+    public function getDeleteUrl($id)
+    {
         return $this->getUrl('*/cdokus_product_edit/deletelink', array(
-                    'back' => 'edit',
-                    'id' => Mage::app()->getRequest()->getParam('id'),
-                    'tab' => 'product_info_tabs_cdokus',
-                    'link_entity_id' => $id,
-                ));
+            'back' => 'edit',
+            'id' => Mage::app()->getRequest()->getParam('id'),
+            'tab' => 'product_info_tabs_cdokus',
+            'link_entity_id' => $id,
+        ));
     }
 
 }

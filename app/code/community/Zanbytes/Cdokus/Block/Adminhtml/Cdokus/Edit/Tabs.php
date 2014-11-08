@@ -26,21 +26,24 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Tabs.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Tabs.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Edit_Tabs extends Mage_Adminhtml_Block_Widget_Tabs {
+class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Edit_Tabs extends Mage_Adminhtml_Block_Widget_Tabs
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->setId('quotation_info_tabs');
         $this->setDestElementId('edit_form');
     }
 
-    protected function _beforeToHtml() {
+    protected function _beforeToHtml()
+    {
         $this->addTab('general', array(
             'label' => Mage::helper('cdokus')->__('General'),
             'title' => Mage::helper('cdokus')->__('General'),
@@ -50,7 +53,8 @@ class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Edit_Tabs extends Mage_Adminhtml_Bl
         return parent::_beforeToHtml();
     }
 
-    protected function _updateActiveTab() {
+    protected function _updateActiveTab()
+    {
         $tabId = $this->getRequest()->getParam('tab');
         if ($tabId) {
             $tabId = preg_replace("#{$this->getId()}_#", '', $tabId);

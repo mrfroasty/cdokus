@@ -25,11 +25,11 @@
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: EditController.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: EditController.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 require_once 'Mage/Adminhtml/controllers/Catalog/ProductController.php';
 
@@ -40,26 +40,30 @@ require_once 'Mage/Adminhtml/controllers/Catalog/ProductController.php';
  * @package     Mage_Bundle
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-class Zanbytes_Cdokus_Adminhtml_Cdokus_Product_EditController extends Mage_Adminhtml_Catalog_ProductController {
+class Zanbytes_Cdokus_Adminhtml_Cdokus_Product_EditController extends Mage_Adminhtml_Catalog_ProductController
+{
 
-    protected function _construct() {
+    protected function _construct()
+    {
         $this->setUsedModuleName('Zanbytes_Cdokus');
     }
 
-    public function formAction() {
+    public function formAction()
+    {
         $product = $this->_initProduct();
         $this->loadLayout();
         $this->getLayout()->getBlock('admin.product.cdokus.items')
-                ->setProductId($product->getId());
+            ->setProductId($product->getId());
         $this->renderLayout();
     }
 
-    public function addAction() {
+    public function addAction()
+    {
         $product = $this->_initProduct();
         $storeId = $this->getRequest()->getParam('store', Mage_Core_Model_App::ADMIN_STORE_ID);
         $redirectBack = $this->getRequest()->getParam('back', false);
         $productId = $this->getRequest()->getParam('id');
-        $isEdit = (int) ($this->getRequest()->getParam('id') != null);
+        $isEdit = (int)($this->getRequest()->getParam('id') != null);
 
         $data = $this->getRequest()->getPost();
         if ($data) {
@@ -73,20 +77,20 @@ class Zanbytes_Cdokus_Adminhtml_Cdokus_Product_EditController extends Mage_Admin
                  * Upload handler
                  */
                 $uploader = new Varien_File_Uploader('cdokus_filename');
-                $uploader->setFilesDispersion((bool) $link->getConfigData('allow_file_dispersion'));
-                $uploader->setAllowRenameFiles((bool) $link->getConfigData('allow_file_rename'));
+                $uploader->setFilesDispersion((bool)$link->getConfigData('allow_file_dispersion'));
+                $uploader->setAllowRenameFiles((bool)$link->getConfigData('allow_file_rename'));
                 $uploader->setAllowedExtensions(explode(',', $link->getConfigData('allowed_file_extension')));
                 $result = $uploader->save($link->getDirpath());
                 $label = $this->getRequest()->getParam('cdokus_label', null);
                 $isActive = $this->getRequest()->getParam('cdokus_is_active', true);
                 $link->setSku($sku)
-                        ->setFilename($result['file'])
-                        ->setLabel($label)
-                        ->setStoreId($storeId)
-                        ->setIsActive($isActive)
-                        ->setCreatedAt(now())
-                        ->setUpdatedAt(now())
-                        ->save();
+                    ->setFilename($result['file'])
+                    ->setLabel($label)
+                    ->setStoreId($storeId)
+                    ->setIsActive($isActive)
+                    ->setCreatedAt(now())
+                    ->setUpdatedAt(now())
+                    ->save();
                 /**
                  * Generate event , just incase someone want to dive in here
                  */
@@ -97,7 +101,7 @@ class Zanbytes_Cdokus_Adminhtml_Cdokus_Product_EditController extends Mage_Admin
                 $this->_getSession()->addSuccess($this->__('The link has been saved.'));
             } catch (Mage_Core_Exception $e) {
                 $this->_getSession()->addError($e->getMessage())
-                        ->setProductData($data);
+                    ->setProductData($data);
                 $redirectBack = true;
             } catch (Exception $e) {
                 Mage::logException($e);
@@ -121,11 +125,12 @@ class Zanbytes_Cdokus_Adminhtml_Cdokus_Product_EditController extends Mage_Admin
         }
     }
 
-    public function updateAction() {
+    public function updateAction()
+    {
         $storeId = $this->getRequest()->getParam('store');
         $redirectBack = $this->getRequest()->getParam('back', false);
         $productId = $this->getRequest()->getParam('id');
-        $isEdit = (int) ($this->getRequest()->getParam('id') != null);
+        $isEdit = (int)($this->getRequest()->getParam('id') != null);
 
         $data = $this->getRequest()->getPost();
         if ($data) {
@@ -141,7 +146,7 @@ class Zanbytes_Cdokus_Adminhtml_Cdokus_Product_EditController extends Mage_Admin
                 $this->_getSession()->addSuccess($this->__('The link position updated.'));
             } catch (Mage_Core_Exception $e) {
                 $this->_getSession()->addError($e->getMessage())
-                        ->setProductData($data);
+                    ->setProductData($data);
                 $redirectBack = true;
             } catch (Exception $e) {
                 Mage::logException($e);
@@ -166,7 +171,8 @@ class Zanbytes_Cdokus_Adminhtml_Cdokus_Product_EditController extends Mage_Admin
         }
     }
 
-    public function deletelinkAction() {
+    public function deletelinkAction()
+    {
         $productId = $this->getRequest()->getParam('id');
         try {
             if ($linkId = $this->getRequest()->getParam('link_entity_id', false)) {
@@ -191,17 +197,18 @@ class Zanbytes_Cdokus_Adminhtml_Cdokus_Product_EditController extends Mage_Admin
         ));
     }
 
-    public function statusAction() {
+    public function statusAction()
+    {
         try {
             if ($linkId = $this->getRequest()->getParam('link_id', false)) {
                 if ($link = Mage::getModel('cdokus/link')->load($linkId)) {
                     $link->setIsActive($this->getRequest()->getParam('is_active'))
-                            ->setUpdatedAt(now())
-                            ->save();
+                        ->setUpdatedAt(now())
+                        ->save();
                     $storeId = $link->getStoreId();
                     $productId = Mage::getResourceModel('catalog/product')->getIdBySku($link->getSku());
                     $status = $link->getIsActive() == Zanbytes_Cdokus_Model_Link::STATUS_ENABLED ?
-                            $this->__('enabled') : $this->__('disabled');
+                        $this->__('enabled') : $this->__('disabled');
                     $this->_getSession()->addSuccess($this->__("The link %s status is to %s.", $link->getId(), $status));
                 }
             }
@@ -219,11 +226,12 @@ class Zanbytes_Cdokus_Adminhtml_Cdokus_Product_EditController extends Mage_Admin
         ));
     }
 
-    public function tabgridAction() {
+    public function tabgridAction()
+    {
         $product = $this->_initProduct();
         $this->loadLayout();
         $this->getLayout()->getBlock('adminhtml.catalog.product.edit.tab.links.grid')
-                ->setProductId($product->getId());
+            ->setProductId($product->getId());
         $this->renderLayout();
     }
 

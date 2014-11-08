@@ -26,24 +26,27 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Collection.php 1105 2014-03-17 22:41:47Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Collection.php 1105 2014-03-17 22:41:47Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Model_Resource_Link_Collection extends Mage_Core_Model_Mysql4_Collection_Abstract {
+class Zanbytes_Cdokus_Model_Resource_Link_Collection extends Mage_Core_Model_Mysql4_Collection_Abstract
+{
 
     protected $_sku = null;
 
     /**
      * Resource initialization
      */
-    protected function _construct() {
+    protected function _construct()
+    {
         $this->_init('cdokus/link');
     }
 
-    public function addSkuToSelect($sku) {
+    public function addSkuToSelect($sku)
+    {
         $this->_sku = $sku;
         return $this;
     }
@@ -54,7 +57,8 @@ class Zanbytes_Cdokus_Model_Resource_Link_Collection extends Mage_Core_Model_Mys
      * @param array | int $storeId
      * @return Mage_Tag_Model_Resource_Tag_Collection
      */
-    public function addStoreFilter($storeId) {
+    public function addStoreFilter($storeId)
+    {
         /**
          * All links on the store view level
          */
@@ -69,10 +73,10 @@ class Zanbytes_Cdokus_Model_Resource_Link_Collection extends Mage_Core_Model_Mys
          * All links on default level, duplicate handled here
          */
         $sql = $this->getConnection()
-                ->select()
-                ->from(array('s' => $this->getMainTable()), array('entity_id'))
-                ->where('s.store_id IN(?)', array($storeId, Mage_Core_Model_App::ADMIN_STORE_ID))
-                ->where('s.sku = ?', $this->_sku);
+            ->select()
+            ->from(array('s' => $this->getMainTable()), array('entity_id'))
+            ->where('s.store_id IN(?)', array($storeId, Mage_Core_Model_App::ADMIN_STORE_ID))
+            ->where('s.sku = ?', $this->_sku);
         if (!empty($files))
             $sql->where('s.filename NOT IN(?)', $files);
         /**
@@ -88,7 +92,8 @@ class Zanbytes_Cdokus_Model_Resource_Link_Collection extends Mage_Core_Model_Mys
      * @param int $status
      * @return Mage_Tag_Model_Resource_Tag_Collection
      */
-    public function addActiveFilter($status) {
+    public function addActiveFilter($status)
+    {
         $this->getSelect()->where('main_table.is_active = ?', $status);
         return $this;
     }
@@ -99,7 +104,8 @@ class Zanbytes_Cdokus_Model_Resource_Link_Collection extends Mage_Core_Model_Mys
      * @param array | int $sku
      * @return Mage_Tag_Model_Resource_Tag_Collection
      */
-    public function addProductFilter() {
+    public function addProductFilter()
+    {
         $this->getSelect()->where('main_table.sku = ?', $this->_sku);
         return $this;
     }
@@ -110,7 +116,8 @@ class Zanbytes_Cdokus_Model_Resource_Link_Collection extends Mage_Core_Model_Mys
      * @param string $dir sort type asc|desc
      * @return Mage_Catalog_Model_Resource_Product_Link_Product_Collection
      */
-    public function setPositionOrder($dir = self::SORT_ORDER_DESC) {
+    public function setPositionOrder($dir = self::SORT_ORDER_DESC)
+    {
         $this->getSelect()->order('main_table.position ' . $dir);
         return $this;
     }

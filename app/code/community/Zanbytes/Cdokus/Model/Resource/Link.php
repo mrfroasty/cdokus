@@ -26,19 +26,21 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Link.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Link.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Model_Resource_Link extends Mage_Core_Model_Mysql4_Abstract {
+class Zanbytes_Cdokus_Model_Resource_Link extends Mage_Core_Model_Mysql4_Abstract
+{
 
     /**
      * Resource initialization
      *
      */
-    protected function _construct() {
+    protected function _construct()
+    {
         $this->_init('cdokus/links', 'entity_id');
     }
 

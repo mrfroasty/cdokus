@@ -26,26 +26,28 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Form.php 1103 2014-02-18 00:30:55Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Form.php 1103 2014-02-18 00:30:55Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Edit_Tab_Form extends Mage_Adminhtml_Block_Widget_Form {
+class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Edit_Tab_Form extends Mage_Adminhtml_Block_Widget_Form
+{
 
-    protected function _prepareForm() {
+    protected function _prepareForm()
+    {
         $form = new Varien_Data_Form();
 
         $this->setForm($form);
         $form::setElementRenderer(
-                $this->getLayout()->createBlock('adminhtml/widget_form_renderer_element')
+            $this->getLayout()->createBlock('adminhtml/widget_form_renderer_element')
         );
         $form::setFieldsetRenderer(
-                $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset')
+            $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset')
         );
         $form::setFieldsetElementRenderer(
-                $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset_element')
+            $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset_element')
         );
 
         $fieldset = $form->addFieldset('cdokus_fields', array('legend' => Mage::helper('cdokus')->__('Cdokus uploader'))

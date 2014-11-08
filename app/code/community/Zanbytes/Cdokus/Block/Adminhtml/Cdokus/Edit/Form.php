@@ -26,19 +26,21 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Form.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Form.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Edit_Form extends Mage_Adminhtml_Block_Widget_Form {
+class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
+{
 
-    protected function _prepareForm() {
+    protected function _prepareForm()
+    {
         $form = new Varien_Data_Form(array(
-                    'id' => 'edit_form',
-                    'enctype' => "multipart/form-data",
-                    'action' => $this->getUrl('*/*/save', array('link_id' => $this->getRequest()->getParam('link_id'))), 'method' => 'post',));
+            'id' => 'edit_form',
+            'enctype' => "multipart/form-data",
+            'action' => $this->getUrl('*/*/save', array('link_id' => $this->getRequest()->getParam('link_id'))), 'method' => 'post',));
         $form->setUseContainer(true);
         $this->setForm($form);
         return parent::_prepareForm();

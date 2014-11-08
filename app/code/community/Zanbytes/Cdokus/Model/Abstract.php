@@ -26,13 +26,14 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Abstract.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Abstract.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-abstract class Zanbytes_Cdokus_Model_Abstract extends Mage_Core_Model_Abstract {
+abstract class Zanbytes_Cdokus_Model_Abstract extends Mage_Core_Model_Abstract
+{
 
     protected $_dirPath = null;
 
@@ -43,7 +44,8 @@ abstract class Zanbytes_Cdokus_Model_Abstract extends Mage_Core_Model_Abstract {
      * @param string $idFieldName
      * @return Mage_Core_Model_Abstract
      */
-    protected function _construct() {
+    protected function _construct()
+    {
         $this->_init('cdokus/link');
         $this->setDirpath();
     }
@@ -52,11 +54,13 @@ abstract class Zanbytes_Cdokus_Model_Abstract extends Mage_Core_Model_Abstract {
      * @desc Get Directory Path
      * @return type string path used to store docs
      */
-    public function getDirpath() {
+    public function getDirpath()
+    {
         return $this->setDirpath();
     }
 
-    public function setDirpath($dir = null) {
+    public function setDirpath($dir = null)
+    {
         if (null === $dir)
             $this->_dirPath = Mage::getBaseDir() . DS . 'media' . DS . 'catalog' . DS . 'docs' . DS;
         $this->setData('dir_path', $dir);
@@ -71,7 +75,8 @@ abstract class Zanbytes_Cdokus_Model_Abstract extends Mage_Core_Model_Abstract {
      *
      * @return mixed
      */
-    public function getConfigData($field, $storeId = null, $code = 'general') {
+    public function getConfigData($field, $storeId = null, $code = 'general')
+    {
         if (null === $storeId) {
             $storeId = $this->getStore();
         }
@@ -79,14 +84,16 @@ abstract class Zanbytes_Cdokus_Model_Abstract extends Mage_Core_Model_Abstract {
         return Mage::getStoreConfig($path, $storeId);
     }
 
-    public function getStore() {
+    public function getStore()
+    {
         if ($storeId = $this->getData('store_id')) {
             return $storeId;
         }
         return Mage::app()->getStore()->getId();
     }
 
-    public function verifyLicence($host = null) {
+    public function verifyLicence($host = null)
+    {
         if (null === $host) {
             $url = new Varien_Object(parse_url(Mage::app()->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK)));
             $host = $url->getHost();
@@ -100,10 +107,11 @@ abstract class Zanbytes_Cdokus_Model_Abstract extends Mage_Core_Model_Abstract {
         return false;
     }
 
-    public function execute($observer) {
+    public function execute($observer)
+    {
         if (!Mage::getModel('cdokus/link')->verifyLicence())
             Mage::getSingleton('adminhtml/session')
-                    ->addError('Your license is invalid, please consult me via <a href="mailto:info@zanbytes.com">info@zanbytes.com</a>');
+                ->addError('Your license is invalid, please consult me via <a href="mailto:info@zanbytes.com">info@zanbytes.com</a>');
         return $this;
     }
 

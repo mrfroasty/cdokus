@@ -26,13 +26,14 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Link.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Link.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Model_Link extends Zanbytes_Cdokus_Model_Abstract {
+class Zanbytes_Cdokus_Model_Link extends Zanbytes_Cdokus_Model_Abstract
+{
 
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 2;
@@ -41,11 +42,13 @@ class Zanbytes_Cdokus_Model_Link extends Zanbytes_Cdokus_Model_Abstract {
      * Re-attach the directory path to the basename
      * @return type
      */
-    public function getFilename() {
+    public function getFilename()
+    {
         return $this->getDirpath() . $this->getData('filename');
     }
 
-    public function getLabel() {
+    public function getLabel()
+    {
         $label = $this->getData('label');
         if (!empty($label))
             return $label;

@@ -26,43 +26,49 @@
  */
 
 /**
- * @desc 	Catalog Product Documents
+ * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version 	$Id: Cdokus.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright 	Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
- * @license 	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version    $Id: Cdokus.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Cdokus extends Mage_Adminhtml_Block_Widget implements Mage_Adminhtml_Block_Widget_Tab_Interface {
+class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Cdokus extends Mage_Adminhtml_Block_Widget implements Mage_Adminhtml_Block_Widget_Tab_Interface
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->setSkipGenerateContent(true);
         $this->setTemplate('cdokus/product/edit/cdokus.phtml');
     }
 
-    public function getTabUrl() {
+    public function getTabUrl()
+    {
         return $this->getUrl('*/cdokus_product_edit/form', array('_current' => true));
     }
 
-    public function getUpdateUrl() {
+    public function getUpdateUrl()
+    {
         return $this->getUrl('*/cdokus_product_edit/update', array(
-                    'back' => 'edit',
-                    'id' => Mage::app()->getRequest()->getParam('id'),
-                    'tab' => 'product_info_tabs_cdokus',
-                    'store' => Mage::app()->getRequest()->getParam('store')
-                ));
+            'back' => 'edit',
+            'id' => Mage::app()->getRequest()->getParam('id'),
+            'tab' => 'product_info_tabs_cdokus',
+            'store' => Mage::app()->getRequest()->getParam('store')
+        ));
     }
 
-    public function getaddUrl() {
+    public function getaddUrl()
+    {
         return $this->getUrl('*/cdokus_product_edit/add', array(
-                    'back' => 'edit',
-                    'id' => Mage::app()->getRequest()->getParam('id'),
-                    'tab' => 'product_info_tabs_cdokus',
-                    'store' => Mage::app()->getRequest()->getParam('store'),
-                ));
+            'back' => 'edit',
+            'id' => Mage::app()->getRequest()->getParam('id'),
+            'tab' => 'product_info_tabs_cdokus',
+            'store' => Mage::app()->getRequest()->getParam('store'),
+        ));
     }
 
-    public function getTabClass() {
+    public function getTabClass()
+    {
         return 'ajax';
     }
 
@@ -71,24 +77,25 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Cdokus extends Ma
      *
      * @return Mage_Bundle_Block_Adminhtml_Catalog_Product_Edit_Tab_Bundle
      */
-    protected function _prepareLayout() {
+    protected function _prepareLayout()
+    {
         $message = Mage::helper('catalog')->__('Are you sure?');
         $this->setChild('add_button', $this->getLayout()->createBlock('adminhtml/widget_button')
-                        ->setData(array(
-                            'label' => Mage::helper('cdokus')->__('Add New Option'),
-                            'class' => 'add',
-                            'id' => 'add_new_file',
-                            'onclick' => 'if( confirm(\'' . $message . '\')) {productForm.submit(\'' . $this->getAddUrl() . '\');}return false;'
-                        ))
+                ->setData(array(
+                    'label' => Mage::helper('cdokus')->__('Add New Option'),
+                    'class' => 'add',
+                    'id' => 'add_new_file',
+                    'onclick' => 'if( confirm(\'' . $message . '\')) {productForm.submit(\'' . $this->getAddUrl() . '\');}return false;'
+                ))
         );
 
         $this->setChild('update_button', $this->getLayout()->createBlock('adminhtml/widget_button')
-                        ->setData(array(
-                            'label' => Mage::helper('cdokus')->__('Update Position'),
-                            'class' => 'update',
-                            'id' => 'update_link_position',
-                            'onclick' => 'if( confirm(\'' . $message . '\')) {productForm.submit(\'' . $this->getUpdateUrl() . '\');}return false;'
-                        ))
+                ->setData(array(
+                    'label' => Mage::helper('cdokus')->__('Update Position'),
+                    'class' => 'update',
+                    'id' => 'update_link_position',
+                    'onclick' => 'if( confirm(\'' . $message . '\')) {productForm.submit(\'' . $this->getUpdateUrl() . '\');}return false;'
+                ))
         );
 
         $this->setChild('links_grid', $this->getLayout()->createBlock('cdokus/adminhtml_catalog_product_edit_tab_links_grid', 'adminhtml.catalog.product.edit.tab.links.grid')
@@ -97,31 +104,35 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Cdokus extends Ma
         return parent::_prepareLayout();
     }
 
-    public function getAddButtonHtml() {
+    public function getAddButtonHtml()
+    {
         return $this->getChildHtml('add_button');
     }
 
-    public function getUpdateButtonHtml() {
+    public function getUpdateButtonHtml()
+    {
         return $this->getChildHtml('update_button');
     }
 
-    public function getAvailableGridBoxHtml() {
+    public function getAvailableGridBoxHtml()
+    {
         return $this->getChildHtml('links_grid');
     }
 
-    public function getFormHtml() {
+    public function getFormHtml()
+    {
         $form = new Varien_Data_Form(
-                        array('id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post')
+            array('id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post')
         );
 
         $form::setElementRenderer(
-                $this->getLayout()->createBlock('adminhtml/widget_form_renderer_element')
+            $this->getLayout()->createBlock('adminhtml/widget_form_renderer_element')
         );
         $form::setFieldsetRenderer(
-                $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset')
+            $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset')
         );
         $form::setFieldsetElementRenderer(
-                $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset_element')
+            $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset_element')
         );
 
         $fieldset = $form->addFieldset('cdokus_fields', array('legend' => Mage::helper('cdokus')->__('Cdokus uploader'))
@@ -160,23 +171,28 @@ class Zanbytes_Cdokus_Block_Adminhtml_Catalog_Product_Edit_Tab_Cdokus extends Ma
         return $form->toHtml();
     }
 
-    public function getProduct() {
+    public function getProduct()
+    {
         return Mage::registry('product');
     }
 
-    public function getTabLabel() {
+    public function getTabLabel()
+    {
         return Mage::helper('cdokus')->__('Documents');
     }
 
-    public function getTabTitle() {
+    public function getTabTitle()
+    {
         return Mage::helper('cdokus')->__('Documents');
     }
 
-    public function canShowTab() {
+    public function canShowTab()
+    {
         return true;
     }
 
-    public function isHidden() {
+    public function isHidden()
+    {
         return false;
     }
 

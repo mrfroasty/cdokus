@@ -39,7 +39,7 @@
             <label>ZANBYTES</label>
             <sort_order>500</sort_order>
         </zanbytes>
-    </tabs>    
+    </tabs>
     <sections>
         <cdokus>
             <label>Cdokus</label>
@@ -67,7 +67,7 @@
                             <show_in_store>1</show_in_store>
                             <comment><![CDATA[Comma seperated e.g pdf,txt,doc]]>
                             </comment>
-                        </allowed_file_extension>                           
+                        </allowed_file_extension>
                         <allow_guest>
                             <label>Allow guest</label>
                             <frontend_type>select</frontend_type>
@@ -77,7 +77,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment><![CDATA[Set this to no, if you intend to let only logged in customers to download.Default Yes]]>
+                            <comment>
+                                <![CDATA[Set this to no, if you intend to let only logged in customers to download.Default Yes]]>
                             </comment>
                         </allow_guest>
                         <allow_file_dispersion>
@@ -91,7 +92,7 @@
                             <show_in_store>1</show_in_store>
                             <comment><![CDATA[All uploaded files will be dispersed e.g foo.pdf to /f/o/foo.pdf]]>
                             </comment>
-                        </allow_file_dispersion>  
+                        </allow_file_dispersion>
                         <allow_file_rename>
                             <label>Allow file rename</label>
                             <frontend_type>select</frontend_type>
@@ -104,16 +105,16 @@
                             <comment><![CDATA[If file exist it will be renamed to foo_1.pdf]]>
                             </comment>
                         </allow_file_rename>
-<!--                        <license>
-                            <label>License key</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment><![CDATA[If you dont have one, please consult me info@zanbytes.com]]>
-                            </comment>
-                        </license>                                                                                                                 -->
+                        <!--                        <license>
+                                                    <label>License key</label>
+                                                    <frontend_type>text</frontend_type>
+                                                    <sort_order>20</sort_order>
+                                                    <show_in_default>1</show_in_default>
+                                                    <show_in_website>1</show_in_website>
+                                                    <show_in_store>1</show_in_store>
+                                                    <comment><![CDATA[If you dont have one, please consult me info@zanbytes.com]]>
+                                                    </comment>
+                                                </license>                                                                                                                 -->
                     </fields>
                 </general>
             </groups>
