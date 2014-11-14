@@ -1245,7 +1245,10 @@ skin/frontend/default/modern/
 skin/frontend/enterprise
 skin/install/
 var/
-/media/
+var/*
+media/*
+media/
+tests*
 app/design/adminhtml/default/default/template/payment/
 app/design/adminhtml/default/default/template/system/
 app/design/frontend/base/default/template/bundle/
