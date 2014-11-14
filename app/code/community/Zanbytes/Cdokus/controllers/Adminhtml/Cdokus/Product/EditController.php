@@ -180,7 +180,8 @@ class Zanbytes_Cdokus_Adminhtml_Cdokus_Product_EditController extends Mage_Admin
                     $link->delete();
                     $storeId = $link->getStoreId();
                     $this->_getSession()->addSuccess($this->__("The link is now removed."));
-                    $this->_getSession()->addNotice($this->__("File %s is left for you to manually delete it.", $link->getData('filename')));
+                    $notice = $this->__("File %s is left for you to manually delete it.", $link->getData('filename'));
+                    $this->_getSession()->addNotice($notice);
                 }
             }
         } catch (Mage_Core_Exception $e) {
@@ -209,7 +210,8 @@ class Zanbytes_Cdokus_Adminhtml_Cdokus_Product_EditController extends Mage_Admin
                     $productId = Mage::getResourceModel('catalog/product')->getIdBySku($link->getSku());
                     $status = $link->getIsActive() == Zanbytes_Cdokus_Model_Link::STATUS_ENABLED ?
                         $this->__('enabled') : $this->__('disabled');
-                    $this->_getSession()->addSuccess($this->__("The link %s status is to %s.", $link->getId(), $status));
+                    $successMessage = $this->__("The link %s status is to %s.", $link->getId(), $status);
+                    $this->_getSession()->addSuccess($successMessage);
                 }
             }
         } catch (Mage_Core_Exception $e) {
