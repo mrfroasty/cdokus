@@ -1,0 +1,4 @@
+Pending feature:
+@todo Adds own upload interface with a grid to create links {1 doc to many products}
+@todo Adds cdokus column in the catalog/product grid to notify admin that documents exists
+@todo Adds validation against upload size exceeds server settings.
