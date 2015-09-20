@@ -7,6 +7,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
     <menu>
-        <add id="Zanbytes_Cdokus::cdokus_links" title="Manage Documents" module="Zanbytes_Cdokus" sortOrder="10" parent="Magento_Catalog::catalog" action="cdokus/links" resource="Zanbytes_Cdokus::links"/>
+        <add id="Zanbytes_Cdokus::cdokus_links" title="Manage Documents" module="Zanbytes_Cdokus" sortOrder="10" parent="Magento_Catalog::catalog" action="cdokus/links/" resource="Zanbytes_Cdokus::links"/>
      </menu>
 </config>
