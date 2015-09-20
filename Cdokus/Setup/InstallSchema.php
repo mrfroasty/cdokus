@@ -13,6 +13,7 @@ class InstallSchema implements InstallSchemaInterface
 {
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
+//        die(__METHOD__.'#'.__LINE__);
         $installer = $setup;
 
         /* @var $installer Mage_Catalog_Model_Resource_Setup */
