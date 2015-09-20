@@ -21,15 +21,15 @@
  *
  * @category    Zanbytes
  * @package     Zanbytes_Cdokus
- * @copyright   Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @copyright   Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version    $Id: Form.php 1103 2014-02-18 00:30:55Z muhsin $ $LastChangedBy: muhsin $
- * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @version    $Id: Form.php 1103 2015-02-18 00:30:55Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Edit_Tab_Form extends Mage_Adminhtml_Block_Widget_Form

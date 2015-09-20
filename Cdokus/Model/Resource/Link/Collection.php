@@ -21,15 +21,15 @@
  *
  * @category    Zanbytes
  * @package     Zanbytes_Cdokus
- * @copyright   Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @copyright   Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version    $Id: Collection.php 1105 2014-03-17 22:41:47Z muhsin $ $LastChangedBy: muhsin $
- * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @version    $Id: Collection.php 1105 2015-03-17 22:41:47Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Zanbytes_Cdokus_Model_Resource_Link_Collection extends Mage_Core_Model_Mysql4_Collection_Abstract

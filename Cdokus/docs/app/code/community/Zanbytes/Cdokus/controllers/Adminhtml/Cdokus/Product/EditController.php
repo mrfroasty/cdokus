@@ -21,14 +21,14 @@
  *
  * @category    Zanbytes
  * @package     Zanbytes_Cdokus
- * @copyright   Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @copyright   Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 /**
  * @desc    Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version    $Id: EditController.php 1104 2014-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright    Copyright (c) 2014 Zanbytes Inc. (http://www.zanbytes.com)
+ * @version    $Id: EditController.php 1104 2015-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright    Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 require_once 'Mage/Adminhtml/controllers/Catalog/ProductController.php';
