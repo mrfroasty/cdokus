@@ -13,7 +13,6 @@ class InstallSchema implements InstallSchemaInterface
 {
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
-//        die(__METHOD__.'#'.__LINE__);
         $installer = $setup;
 
         /* @var $installer Mage_Catalog_Model_Resource_Setup */
@@ -39,7 +38,8 @@ class InstallSchema implements InstallSchemaInterface
                 'Sku'
             )
             ->addColumn('filename',
-                Varien_Db_Ddl_Table::TYPE_VARCHAR, 155,
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                155,
                 ['nullable' => false],
                 'File Name'
             )
