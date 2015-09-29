@@ -5,13 +5,9 @@
  * See COPYING.txt for license details.
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../../../../../../app/code/Magento/Backend/etc/menu.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../app/code/Magento/Backend/etc/menu.xsd">
     <menu>
-        <add id="Zanbytes_Cdokus::links" title="Cdokus" module="Zanbytes_Cdokus" sortOrder="60"
-             resource="Zanbytes_Cdokus::links"/>
-        <add id="Zanbytes_Cdokus::links_documents" title="Manage Documents" module="Zanbytes_Cdokus" sortOrder="10"
-             parent="Zanbytes_Cdokus::links" action="adminhtml/cdokus_document_link/index"
-             resource="Zanbytes_Cdokus::links"/>
+        <add id="Zanbytes_Cdokus::cdokus" title="Cdokus" module="Zanbytes_Cdokus" sortOrder="60" resource="Zanbytes_Cdokus::links"/>
+        <add id="Zanbytes_Cdokus::cdokus_links" title="Manage Documents" module="Zanbytes_Cdokus" sortOrder="10" parent="Zanbytes_Cdokus::cdokus" action="cdokus/link" resource="Zanbytes_Cdokus::cdokus_links"/>
     </menu>
 </config>

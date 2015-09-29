@@ -42,7 +42,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Zanbytes_Cdokus::cdokus" title="Manage Documents" />
+                            <resource id="Zanbytes_Cdokus::cdokus_links" title="Manage Documents" />
                         </resource>
                     </resource>
                 </resource>
