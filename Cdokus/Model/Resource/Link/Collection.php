@@ -81,7 +81,7 @@ class Collection extends \Magento\Framework\Model\Resource\Db\Collection\Abstrac
         $sql = $this->getConnection()
             ->select()
             ->from(array('s' => $this->getMainTable()), array('entity_id'))
-            ->where('s.store_id IN(?)', array($storeId, Mage_Core_Model_App::ADMIN_STORE_ID))
+            ->where('s.store_id IN(?)', array($storeId, \Magento\Store\Model\Store::DEFAULT_STORE_ID))
             ->where('s.sku = ?', $this->_sku);
         if (!empty($files))
             $sql->where('s.filename NOT IN(?)', $files);
