@@ -45,10 +45,10 @@ abstract class AbstractModel extends \Magento\Framework\Model\AbstractModel
      * @param string $idFieldName
      * @return Mage_Core_Model_Abstract
      */
-    protected function _construct()
+    protected function _construct($dir = null)
     {
         $this->_init('Zanbytes\Cdokus\Model\Resource\Link');
-        $this->setDirpath();
+        $this->setDirpath($dir);
     }
 
     /**
@@ -77,6 +77,9 @@ abstract class AbstractModel extends \Magento\Framework\Model\AbstractModel
      *
      * @return mixed
      */
+    
+    //TODO re-write these functions
+    
     public function getConfigData($field, $storeId = null, $code = 'general')
     {
         if (null === $storeId) {

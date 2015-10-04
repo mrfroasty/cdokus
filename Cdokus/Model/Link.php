@@ -26,11 +26,11 @@
  */
 
 /**
- * @desc    Catalog Product Documents
+ * @desc        Catalog Product Documents
  * @author      Omar,Muhsin <info@zanbytes.com>
- * @version    $Id: Link.php 1104 2015-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
- * @copyright    Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
- * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @version     $Id: Link.php 1104 2015-02-18 00:33:21Z muhsin $ $LastChangedBy: muhsin $
+ * @copyright   Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 namespace Zanbytes\Cdokus\Model;
 
@@ -44,7 +44,7 @@ use Magento\Framework\Object\IdentityInterface;
  * @method \Magento\Cms\Model\Resource\Page getResource()
  * @method int[] getStores()
  */
-class Link extends Zanbytes\Cdokus\Model\AbstractModel implements LinkInterface, IdentityInterface
+class Link extends \Zanbytes\Cdokus\Model\AbstractModel implements LinkInterface, IdentityInterface
 {
     /**
      * No route page id
@@ -82,7 +82,17 @@ class Link extends Zanbytes\Cdokus\Model\AbstractModel implements LinkInterface,
      */
     public function getId()
     {
-        return parent::getData(self::ENTITY_ID);
+        return $this->getData(self::ENTITY_ID);
+    }
+    
+    /**
+     * Get SKU
+     *
+     * @return string
+     */
+    public function getSku()
+    {
+        return $this->getData(self::SKU);
     }
     
     /**
@@ -93,7 +103,12 @@ class Link extends Zanbytes\Cdokus\Model\AbstractModel implements LinkInterface,
     {
         return $this->getDirpath() . $this->getData(self::FILENAME);
     }
-
+    
+    /**
+     * Get label
+     *
+     * @return string
+     */    
     public function getLabel()
     {
         $label = $this->getData(self::LABEL);
@@ -103,7 +118,154 @@ class Link extends Zanbytes\Cdokus\Model\AbstractModel implements LinkInterface,
         $pathinfo = pathinfo($this->getFilename());
         return $pathinfo['filename'];
     }
+    
+    /**
+     * Get store_id
+     *
+     * @return int|null
+     */    
+    public function getStoreId()
+    {
+        return $this->getData(self::STORE_ID);
+    }
+    
 
+    /**
+     * Get position
+     *
+     * @return int|null
+     */
+    public function getPosition()
+    {
+        return $this->getData(self::POSITION);
+    }
+        
+    /**
+     * Get Is Active
+     *
+     * @return int|null
+     */    
+    public function getIsActive()
+    {
+        return $this->getData(self::IS_ACTIVE);
+    }
+    
+
+    /**
+     * Get created at
+     *
+     * @return string
+     */    
+    public function getCreatedAt()
+    {
+        return $this->getData(self::CREATED_AT);
+    }
+    
+    
+    /**
+     * Get ID
+     *
+     * @return int|null
+     */    
+    public function getUpdatedAt()
+    {
+        return $this->getData(self::UPDATED_AT);
+    }
+    
+    
+       /**
+     * Get ID
+     *
+     * @return int|null
+     */
+    public function setId($id)
+    {
+        return $this->setData(self::ENTITY_ID, $id);
+    }
+    
+    /**
+     * Get SKU
+     *
+     * @return string
+     */
+    public function setSku($sku)
+    {
+        return $this->setData(self::SKU, $sku);
+    }
+    
+    /**
+     * Get Filename
+     *
+     * @return string
+     */
+    public function setFilename($filename)
+    {
+        return $this->setData(self::FILENAME, basename($filename));
+    }
+    
+    /**
+     * Get label
+     *
+     * @return string
+     */    
+    public function setLabel($label)
+    {
+        return $this->setData(self::LABEL, $label);
+    }
+    
+    /**
+     * Get store_id
+     *
+     * @return int|null
+     */    
+    public function setStoreId($storeId)
+    {
+        return $this->setData(self::STORE_ID, $storeId);
+    }
+    
+
+    /**
+     * Get position
+     *
+     * @return int|null
+     */
+    public function setPosition($position)
+    {
+        return $this->setData(self::POSITION, $position);
+    }
+        
+    /**
+     * Get Is Active
+     *
+     * @return int|null
+     */    
+    public function setIsActive($isActive)
+    {
+        return $this->setData(self::IS_ACTIVE, $isActive);
+    }
+    
+
+    /**
+     * Get created at
+     *
+     * @return string
+     */    
+    public function setCreatedAt($createdAt)
+    {
+        return $this->setData(self::CREATED_AT, $createdAt);
+    }
+    
+    
+    /**
+     * Get ID
+     *
+     * @return int|null
+     */    
+    public function setUpdatedAt($updatedAt)
+    {
+        return $this->setData(self::UPDATED_AT, $updatedAt);
+    }
+  
     /**
      * Load object data
      *
@@ -130,8 +292,16 @@ class Link extends Zanbytes\Cdokus\Model\AbstractModel implements LinkInterface,
     {
         return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
     }
-
-
+    
+    /**
+     * Return unique ID(s) for each object in system
+     *
+     * @return array
+     */
+    public function getIdentities()
+    {
+        return [self::CACHE_TAG . '_' . $this->getId()];
+    }
 
 }
 
