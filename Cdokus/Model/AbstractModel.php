@@ -34,9 +34,63 @@
  */
 namespace Zanbytes\Cdokus\Model;
 
+use Magento\Framework\App\Filesystem\DirectoryList;
+
 abstract class AbstractModel extends \Magento\Framework\Model\AbstractModel
 {
     protected $_dirPath = null;
+    
+     /**
+     * @var \Magento\Framework\Filesystem\Directory\Write
+     */
+    protected $_directory;
+
+     /**
+     * @var \Magento\Framework\Stdlib\DateTime\DateTime
+     */
+    protected $_dateModel;
+
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
+    protected $_storeManager;
+
+    /**
+     * @var \Magento\Framework\Stdlib\DateTime
+     */
+    protected $dateTime;
+
+    
+    /**
+     * @param \Magento\Framework\Model\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Framework\Filesystem $filesystem
+     * @param \Magento\Framework\Stdlib\DateTime\DateTime $modelDate
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Magento\Framework\App\RequestInterface $request
+     * @param \Magento\Framework\Stdlib\DateTime $dateTime
+     * @param \Magento\Framework\Model\Resource\AbstractResource $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb $resourceCollection
+     * @param array $data
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+     */
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Filesystem $filesystem,
+        \Magento\Framework\Stdlib\DateTime\DateTime $modelDate,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Framework\Stdlib\DateTime $dateTime,
+        \Magento\Framework\Model\Resource\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        array $data = []
+    ) {
+        $this->_directory = $filesystem->getDirectoryWrite(DirectoryList::ROOT);
+        $this->_dateModel = $modelDate;
+        $this->_storeManager = $storeManager;
+        $this->dateTime = $dateTime;
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+    }
 
     /**
      * Model initialization
@@ -62,8 +116,9 @@ abstract class AbstractModel extends \Magento\Framework\Model\AbstractModel
 
     public function setDirpath($dir = null)
     {
+        $DS = DIRECTORY_SEPARATOR;
         if (null === $dir) {
-            $this->_dirPath = Mage::getBaseDir() . DS . 'media' . DS . 'catalog' . DS . 'docs' . DS;            
+            $this->_dirPath = $this->_directory->getAbsolutePath(DirectoryList::MEDIA). $DS . 'catalog' . $DS . 'docs' . $DS;            
         }
         $this->setData('dir_path', $dir);
         return $this->_dirPath;

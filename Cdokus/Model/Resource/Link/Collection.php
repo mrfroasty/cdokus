@@ -32,7 +32,13 @@
  * @copyright   Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Model_Resource_Link_Collection extends Mage_Core_Model_Mysql4_Collection_Abstract
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace Zanbytes\Cdokus\Model\Resource\Link;
+
+class Collection extends \Magento\Framework\Model\Resource\Db\Collection\AbstractCollection
 {
 
     protected $_sku = null;
@@ -42,7 +48,7 @@ class Zanbytes_Cdokus_Model_Resource_Link_Collection extends Mage_Core_Model_Mys
      */
     protected function _construct()
     {
-        $this->_init('cdokus/link');
+        $this->_init('Zanbytes\Cdokus\Model\Link', 'Zanbytes\Cdokus\Model\Resource\Link');
     }
 
     public function addSkuToSelect($sku)

@@ -32,16 +32,19 @@
  * @copyright   Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Model_Resource_Link extends Mage_Core_Model_Mysql4_Abstract
-{
+namespace Zanbytes\Cdokus\Model\Resource;
 
+/**
+ * Cms page mysql resource
+ */
+class Link extends \Magento\Framework\Model\Resource\Db\AbstractDb
+{ 
     /**
      * Resource initialization
      *
      */
     protected function _construct()
     {
-        $this->_init('cdokus/links', 'entity_id');
+        $this->_init('cdokus_links', 'entity_id');
     }
-
 }
