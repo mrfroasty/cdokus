@@ -49,11 +49,12 @@ class InstallSchema implements InstallSchemaInterface
                 ['nullable' => false],
                 'Label'
             )
-            ->addColumn('store_id',
-                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            ->addColumn(
+                'store_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
                 null,
-                ['nullable' => false, 'default' => 0],
-                'Store Id'
+                ['unsigned' => true, 'nullable' => false, 'primary' => true],
+                'Store ID'
             )
             ->addColumn('position',
                 \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
@@ -91,6 +92,10 @@ class InstallSchema implements InstallSchemaInterface
                 ['filename', 'store_id'],
                 ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
             )
+            ->addIndex(
+                $installer->getIdxName('cdokus_links', ['store_id']),
+                ['store_id']
+            )
             ->addForeignKey(
                 $installer->getFkName('cdokus_links', 'sku', 'catalog_product_entity', 'sku'),
                 'sku',
@@ -99,12 +104,12 @@ class InstallSchema implements InstallSchemaInterface
                 \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
             )
             ->addForeignKey(
-                $installer->getFkName('cdokus_links', 'store_id', 'store_entity', 'store_id'),
-                'store_id',
-                $installer->getTable('store_entity'),
-                'store_id',
-                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-            )
+            $installer->getFkName('cdokus_links', 'store_id', 'store', 'store_id'),
+            'store_id',
+            $installer->getTable('store'),
+            'store_id',
+            \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+            )              
             ->setComment('Cdokus Links');
         $installer->getConnection()->dropTable($installer->getTable('cdokus_links'));
         $installer->getConnection()->createTable($table);

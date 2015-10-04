@@ -137,7 +137,7 @@ class Link extends \Zanbytes\Cdokus\Model\AbstractModel implements LinkInterface
      */
     public function getPosition()
     {
-        return $this->getData(self::POSITION);
+        return (int)$this->getData(self::POSITION);
     }
         
     /**

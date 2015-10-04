@@ -1,5 +1,9 @@
 <?php
-
+/**
+ *
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Zanbytes\Cdokus\Controller\Adminhtml\Link;
 
 use Magento\Backend\App\Action\Context;
@@ -7,8 +11,6 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Index extends \Magento\Backend\App\Action
 {
-    const ADMIN_RESOURCE = 'Zanbytes_Cdokus::cdokus_links';
-
     /**
      * @var PageFactory
      */
@@ -25,6 +27,15 @@ class Index extends \Magento\Backend\App\Action
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
+    /**
+     * Check the permission to run it
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Zanbytes_Cdokus::link');
+    }
 
     /**
      * Index action
@@ -36,10 +47,10 @@ class Index extends \Magento\Backend\App\Action
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('Zanbytes_Cdokus::cdokus_links');
-        $resultPage->addBreadcrumb(__('Document Links'), __('Document Links'));
+        $resultPage->addBreadcrumb(__('Documents'), __('Documents'));
         $resultPage->addBreadcrumb(__('Manage Document Links'), __('Manage Document Links'));
-        $resultPage->getConfig()->getTitle()->prepend(__('Catalog Links Overview'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Document Links'));
+
         return $resultPage;
     }
 }
-
