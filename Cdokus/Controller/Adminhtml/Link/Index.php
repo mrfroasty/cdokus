@@ -22,7 +22,6 @@ class Index extends \Magento\Backend\App\Action
         Context $context,
         PageFactory $resultPageFactory
     ) {
-        die(__METHOD__.'#'.__LINE__);
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
@@ -36,11 +35,10 @@ class Index extends \Magento\Backend\App\Action
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Ashsmith_Blog::post');
-        $resultPage->addBreadcrumb(__('Blog Posts'), __('Blog Posts'));
-        $resultPage->addBreadcrumb(__('Manage Blog Posts'), __('Manage Blog Posts'));
-        $resultPage->getConfig()->getTitle()->prepend(__('Blog Posts'));
-
+        $resultPage->setActiveMenu('Zanbytes_Cdokus::cdokus_links');
+        $resultPage->addBreadcrumb(__('Document Links'), __('Document Links'));
+        $resultPage->addBreadcrumb(__('Manage Document Links'), __('Manage Document Links'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Catalog Links Overview'));
         return $resultPage;
     }
 }
