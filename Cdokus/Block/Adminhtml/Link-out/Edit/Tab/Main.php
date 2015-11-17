@@ -3,12 +3,12 @@
  * Copyright © 2015 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Zanbytes\Cdokus\Block\Adminhtml\Cdokus\Edit;
+namespace Zanbytes\Cdokus\Block\Adminhtml\Link\Edit\Tab;
 
 /**
  * Cms page edit form main tab
  */
-class Form extends \Magento\Backend\Block\Widget\Form\Generic implements \Magento\Backend\Block\Widget\Tab\TabInterface
+class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magento\Backend\Block\Widget\Tab\TabInterface
 {
     /**
      * @var \Magento\Store\Model\System\Store
@@ -33,93 +33,21 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
-
+    /**
+     * Prepare form
+     *
+     * @return $this
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     */
     protected function _prepareForm()
     {
-        /*
-        $form = new Varien_Data_Form();
-
-        $this->setForm($form);
-        $form::setElementRenderer(
-            $this->getLayout()->createBlock('adminhtml/widget_form_renderer_element')
-        );
-        $form::setFieldsetRenderer(
-            $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset')
-        );
-        $form::setFieldsetElementRenderer(
-            $this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset_element')
-        );
-
-        $fieldset = $form->addFieldset('cdokus_fields', array('legend' => Mage::helper('cdokus')->__('Cdokus uploader'))
-        );
-
-        $fieldset->addField('sku', 'text', array(
-            'name' => 'sku',
-            'label' => Mage::helper('cdokus')->__('SKU'),
-            'class' => 'input',
-            'required' => true,
-            'readonly' => true,
-            'disabled' => true,
-            'note' => Mage::helper('cdokus')->__('read only')
-        ));
-
-        $fieldset->addField('filename', 'text', array(
-            'name' => 'filename',
-            'label' => Mage::helper('cdokus')->__('File'),
-            'class' => 'input',
-            'required' => true,
-            'readonly' => true,
-            'disabled' => true,
-            'note' => Mage::helper('cdokus')->__('read only')
-        ));
-
-        $fieldset->addField('store_id', 'select', array(
-            'label' => Mage::helper('cdokus')->__('Store ID'),
-            'name' => 'store_id',
-            'required' => true,
-            'values' => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
-        ));
-
-        $fieldset->addField('label', 'text', array(
-            'name' => 'label',
-            'label' => Mage::helper('cdokus')->__('File label'),
-            'class' => 'input',
-            'required' => true,
-        ));
-
-        $fieldset->addField('position', 'text', array(
-            'name' => 'position',
-            'label' => Mage::helper('cdokus')->__('Position'),
-            'class' => 'input',
-            'required' => true,
-        ));
-
-        $fieldset->addField('is_active', 'select', array(
-            'label' => Mage::helper('cdokus')->__('Status'),
-            'name' => 'is_active',
-            'required' => false,
-            'values' => array(
-                array(
-                    'value' => Zanbytes_Cdokus_Model_Link::STATUS_DISABLED,
-                    'label' => Mage::helper('cdokus')->__('Inactive'),
-                ),
-                array(
-                    'value' => Zanbytes_Cdokus_Model_Link::STATUS_ENABLED,
-                    'label' => Mage::helper('cdokus')->__('Active'),
-                )
-            ),
-        ));
-        if ($link = Mage::getModel('cdokus/link')->load($this->getRequest()->getParam('link_id'))) {
-            $form->setValues($link->getData());
-        }*/
-
         /* @var $model \Magento\Cms\Model\Page */
         $model = $this->_coreRegistry->registry('cdokus_link');
 
         /*
          * Checking if user have permissions to save information
          */
-        if ($this->_isAllowedAction('Magento_Cms::save')) {
+        if ($this->_isAllowedAction('cdokus_link::save')) {
             $isElementDisabled = false;
         } else {
             $isElementDisabled = true;
@@ -128,12 +56,12 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create();
 
-        $form->setHtmlIdPrefix('page_');
+        $form->setHtmlIdPrefix('link_');
 
-        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Page Information')]);
+        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Link Information')]);
 
         if ($model->getId()) {
-            $fieldset->addField('page_id', 'hidden', ['name' => 'page_id']);
+            $fieldset->addField('entity_id', 'hidden', ['name' => 'entity_id']);
         }
 
         $fieldset->addField(
@@ -206,14 +134,12 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             $model->setData('is_active', $isElementDisabled ? '0' : '1');
         }
 
-        $this->_eventManager->dispatch('adminhtml_cms_page_edit_tab_main_prepare_form', ['form' => $form]);
+        $this->_eventManager->dispatch('adminhtml_cdokus_link_edit_tab_main_prepare_form', ['form' => $form]);
 
         $form->setValues($model->getData());
         $this->setForm($form);
 
         return parent::_prepareForm();
-
-
     }
 
     /**

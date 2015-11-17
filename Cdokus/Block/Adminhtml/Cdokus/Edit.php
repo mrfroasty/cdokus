@@ -32,29 +32,70 @@
  * @copyright    Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
-{
+namespace Zanbytes\Cdokus\Block\Adminhtml\Cdokus;
 
-    public function __construct()
+/**
+ * Admin CMS page
+ *
+ * @author     Magento Core Team <core@magentocommerce.com>
+ */
+class Edit extends \Magento\Backend\Block\Widget\Form\Container
+{
+    /**
+     * Core registry
+     *
+     * @var \Magento\Framework\Registry
+     */
+    protected $_coreRegistry = null;
+
+    /**
+     * @param \Magento\Backend\Block\Widget\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param array $data
+     */
+    public function __construct(
+        \Magento\Backend\Block\Widget\Context $context,
+        \Magento\Framework\Registry $registry,
+        array $data = []
+    ) {
+        $this->_coreRegistry = $registry;
+        parent::__construct($context, $data);
+    }
+
+    protected function _construct()
     {
-        parent::__construct();
+        parent::_construct();
         $this->_objectId = 'id';
-        $this->_blockGroup = 'cdokus';
+        $this->_blockGroup = 'Zanbytes_Cdokus';
         $this->_controller = 'adminhtml_cdokus';
-        $this->_removeButton('reset');
-        $this->_addButton('delete', array(
-            'label' => Mage::helper('adminhtml')->__('Delete'),
+        $this->buttonList->remove('reset');
+        $this->buttonList->add('delete', array(
+            'label' => __('Delete'),
             'class' => 'delete',
-            'onclick' => 'deleteConfirm(\'' . Mage::helper('adminhtml')->__('Are you sure you want to do this?')
+            'onclick' => 'deleteConfirm(\'' . __('Are you sure you want to do this?')
                 . '\', \'' . $this->getDeleteUrl() . '\')',
         ));
     }
 
+//    public function getHeaderText()
+//    {
+//        if ($link = Mage::getModel('cdokus/link')->load($this->getRequest()->getParam('link_id', false))) {
+//            Mage::getSingleton('adminhtml/session')->setLinkData($link->getData());
+//            return __('Link # %s | %s', $link->getEntityId(), $this->formatDate($link->getCreatedAt(), 'medium', true));
+//        }
+//    }
+
+    /**
+     * Retrieve text for header element depending on loaded page
+     *
+     * @return \Magento\Framework\Phrase
+     */
     public function getHeaderText()
     {
-        if ($link = Mage::getModel('cdokus/link')->load($this->getRequest()->getParam('link_id', false))) {
-            Mage::getSingleton('adminhtml/session')->setLinkData($link->getData());
-            return Mage::helper('cdokus')->__('Link # %s | %s', $link->getEntityId(), $this->formatDate($link->getCreatedAt(), 'medium', true));
+        if ($this->_coreRegistry->registry('cdokus_link')->getId()) {
+            return __("Edit Link '%1'", $this->escapeHtml($this->_coreRegistry->registry('cdokus_link')->getTitle()));
+        } else {
+            return __('New Link');
         }
     }
 

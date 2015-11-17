@@ -32,37 +32,56 @@
  * @copyright    Copyright (c) 2015 Zanbytes Inc. (http://www.zanbytes.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Edit_Tabs extends Mage_Adminhtml_Block_Widget_Tabs
+//class Zanbytes_Cdokus_Block_Adminhtml_Cdokus_Edit_Tabs extends Mage_Adminhtml_Block_Widget_Tabs
+//{
+//
+//    public function __construct()
+//    {
+//        parent::__construct();
+//        $this->setId('quotation_info_tabs');
+//        $this->setDestElementId('edit_form');
+//    }
+//
+//    protected function _beforeToHtml()
+//    {
+//        $this->addTab('general', array(
+//            'label' => Mage::helper('cdokus')->__('General'),
+//            'title' => Mage::helper('cdokus')->__('General'),
+//            'content' => $this->getLayout()->createBlock('cdokus/adminhtml_cdokus_edit_tab_form')->toHtml(),
+//        ));
+//        $this->_updateActiveTab();
+//        return parent::_beforeToHtml();
+//    }
+//
+//    protected function _updateActiveTab()
+//    {
+//        $tabId = $this->getRequest()->getParam('tab');
+//        if ($tabId) {
+//            $tabId = preg_replace("#{$this->getId()}_#", '', $tabId);
+//            if ($tabId) {
+//                $this->setActiveTab($tabId);
+//            }
+//        }
+//    }
+//
+//}
+namespace Zanbytes\Cdokus\Block\Adminhtml\Cdokus\Edit;
+
+
+/**
+ * Admin page left menu
+ */
+class Tabs extends \Magento\Backend\Block\Widget\Tabs
 {
-
-    public function __construct()
+    /**
+     * @return void
+     */
+    protected function _construct()
     {
-        parent::__construct();
-        $this->setId('quotation_info_tabs');
+        parent::_construct();
+        $this->setId('link_tabs');
         $this->setDestElementId('edit_form');
+        $this->setTitle(__('Link Information'));
     }
-
-    protected function _beforeToHtml()
-    {
-        $this->addTab('general', array(
-            'label' => Mage::helper('cdokus')->__('General'),
-            'title' => Mage::helper('cdokus')->__('General'),
-            'content' => $this->getLayout()->createBlock('cdokus/adminhtml_cdokus_edit_tab_form')->toHtml(),
-        ));
-        $this->_updateActiveTab();
-        return parent::_beforeToHtml();
-    }
-
-    protected function _updateActiveTab()
-    {
-        $tabId = $this->getRequest()->getParam('tab');
-        if ($tabId) {
-            $tabId = preg_replace("#{$this->getId()}_#", '', $tabId);
-            if ($tabId) {
-                $this->setActiveTab($tabId);
-            }
-        }
-    }
-
 }
 
